@@ -1,0 +1,10 @@
+[
+  {
+    "index": 1,
+    "data": "first todo"
+  },
+  {
+    "index": 2,
+    "data": "second todo"
+  }
+]
