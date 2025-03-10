@@ -4,6 +4,9 @@ const jwt = require("jsonwebtoken");
 const app = express();
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/public/index.html");
+});
 // auth middleware
 const auth = (req, res, next) => {
   const token = req.headers.token;
@@ -110,6 +113,7 @@ const JWT_SECRET = "USER_APP";
 app.post("/sign-up", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
+  // alternate Syntax : const { username, password } = req.body;
 
   users.push({ username, password });
   res.json({
@@ -131,8 +135,9 @@ app.post("/sign-in", (req, res) => {
       },
       JWT_SECRET
     );
-
+    // adding to the current user object
     user.token = token;
+    // res.header("Token", token);
     res.send({
       token,
     });
